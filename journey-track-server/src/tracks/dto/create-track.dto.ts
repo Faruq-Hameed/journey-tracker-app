@@ -8,7 +8,7 @@ export class CreateTrackDto {
   name: string;
 
   @IsArray()
-  @ArrayMinSize(1, { message: 'At least one location is required' })
+  @ArrayMinSize(1, { message: 'At least one location is required' }) //at least the starting location
   @ValidateNested({ each: true })
   @Type(() => Point)
   locations: Point[];

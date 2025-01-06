@@ -15,10 +15,10 @@ import {
     id: string;
   
     @Column()
-    name: string;
+    name: string; //track name as written by the user
   
     @Column('json')
-    locations: Point[];
+    locations: Point[]; //array of points where the user added for the track
   
     @ManyToOne(() => User, (user) => user.tracks)
     user: User;

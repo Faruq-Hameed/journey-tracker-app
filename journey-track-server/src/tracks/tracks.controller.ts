@@ -1,34 +1,24 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, UseGuards } from '@nestjs/common';
 import { TracksService } from './tracks.service';
-import { CreateTrackDto } from './dto/create-track.dto';
-import { UpdateTrackDto } from './dto/update-track.dto';
-
+import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
+import { GetUser } from '../auth/decorators/get-user.decorator';
+import { User } from 'src/user/entities/user.entity';
+import { Point } from './entities/point.entity';
 @Controller('tracks')
+@UseGuards(JwtAuthGuard)
 export class TracksController {
   constructor(private readonly tracksService: TracksService) {}
 
-  @Post()
-  create(@Body() createTrackDto: CreateTrackDto) {
-    return this.tracksService.create(createTrackDto);
-  }
-
   @Get()
-  findAll() {
-    return this.tracksService.findAll();
+  findAll(@GetUser() user: User) {
+    return this.tracksService.findAll(user);
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.tracksService.findOne(+id);
-  }
-
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateTrackDto: UpdateTrackDto) {
-    return this.tracksService.update(+id, updateTrackDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.tracksService.remove(+id);
+  @Post()
+  create(
+    @Body() createTrackDto: { name: string; locations: Point[] },
+    @GetUser() user: User,
+  ) {
+    return this.tracksService.create(createTrackDto, user);
   }
 }

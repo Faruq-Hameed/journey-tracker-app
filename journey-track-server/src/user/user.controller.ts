@@ -6,7 +6,6 @@ import { GetUser } from '../auth/decorators/get-user.decorator';
 import { User } from './entities/user.entity';
 
 @Controller('users')
-@UseGuards(JwtAuthGuard)
 export class UserController {
   constructor(private readonly userService: UserService) {}
 

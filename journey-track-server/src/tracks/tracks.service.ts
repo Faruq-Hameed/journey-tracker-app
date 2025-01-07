@@ -12,7 +12,7 @@ export class TracksService {
   ) {}
 
   async findAll(user: User) {
-    return this.trackRepository.find({
+    return await this.trackRepository.find({
       where: { user: { id: user.id } },
     });
   }
@@ -22,7 +22,7 @@ export class TracksService {
       ...createTrackDto,
       user,
     });
-    return this.trackRepository.save(track);
+    return await this.trackRepository.save(track);
   }
 }
 

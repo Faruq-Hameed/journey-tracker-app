@@ -10,14 +10,15 @@ export class CreateUserDto {
   password: string;
 
   @IsString()
-  @IsOptional()
-  firstName?: string;
+  // @IsOptional()
+  firstname: string;
 
   @IsString()
-  @IsOptional()
-  lastName?: string;
+  // @IsOptional()
+  // lastname?: string;
+  lastname: string;
 
-  @IsPhoneNumber(null, { message: 'Please provide a valid phone number' })
-  @IsOptional()
-  phoneNumber?: string;
+  @IsString()
+  // @IsOptional()
+  phonenumber: string;
 }

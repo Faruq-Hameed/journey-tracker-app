@@ -5,19 +5,20 @@ import { Repository } from 'typeorm';
 import { User } from 'src/user/entities/user.entity';
 import { UserService } from 'src/user/user.service';
 import { SignInDto, SignUpDto } from './dto/auth.dto';
+import { CreateUserDto } from 'src/user/dto/create-user.dto';
 
 @Injectable()
 export class AuthService {
   constructor(
-    @InjectRepository(User)
     private userService: UserService,
     private jwtService: JwtService,
-  ) {}
+  ) { }
 
-  async signUp(signUpDto: SignUpDto) {
+  async signUp(createUserDto: CreateUserDto) {
     // UserService will create the user
-    const user = await this.userService.create(signUpDto);
-    
+
+    const user = await this.userService.create(createUserDto);
+
     // Auth service handles token generation
     const token = this.jwtService.sign({ userId: user.id });
     return { token };

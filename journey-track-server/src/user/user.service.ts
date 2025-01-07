@@ -5,6 +5,7 @@ import { User } from './entities/user.entity';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { UserResponseDto } from './dto/user-response.dto';
+import { IUser } from './interface/IUser';
 
 @Injectable()
 export class UserService {
@@ -13,13 +14,13 @@ export class UserService {
     private userRepository: Repository<User>,
   ) {}
 
-  async create(createUserDto: CreateUserDto): Promise<User> {
-    const existingUser = await this.findByEmail(createUserDto.email);
+  async create(ICreateUser: IUser): Promise<User> {
+    const existingUser = await this.findByEmail(ICreateUser.email);
     if (existingUser) {
       throw new ConflictException('Email already exists');
     }
 
-    const user = this.userRepository.create(createUserDto);
+    const user = this.userRepository.create(ICreateUser);
     return this.userRepository.save(user);
   }
   

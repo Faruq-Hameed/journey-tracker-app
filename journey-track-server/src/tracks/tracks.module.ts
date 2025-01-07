@@ -9,7 +9,6 @@ import { User } from 'src/user/entities/user.entity';
 @Module({
   imports: [
     TypeOrmModule.forFeature([Track, User]),
-    AuthModule, // Import AuthModule to use JwtService
   ],
   controllers: [TracksController],
   providers: [TracksService],

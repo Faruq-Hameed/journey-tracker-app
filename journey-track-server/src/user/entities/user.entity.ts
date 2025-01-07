@@ -12,6 +12,15 @@ export class User {
   email: string;
 
   @Column()
+  firstname: string;
+
+  @Column()
+  lastname: string;
+
+  @Column()
+  phonenumber: string;
+
+  @Column()
   @Exclude() // Excludes password from response
   password: string;
 

@@ -11,8 +11,8 @@ export class JwtAuthGuard implements CanActivate {
   constructor(
     private jwtService: JwtService,
     private reflector: Reflector,
-    private userRepository: Repository<User>,
-  ) {}
+    @InjectRepository(User) private userRepository: Repository<User>, // Inject Repository
+      ) {}
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const isPublic = this.reflector.getAllAndOverride<boolean>(IS_PUBLIC_API, [

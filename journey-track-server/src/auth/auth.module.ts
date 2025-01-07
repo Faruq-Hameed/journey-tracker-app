@@ -12,8 +12,8 @@ import { APP_GUARD } from '@nestjs/core';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([User]), // Import User entity
    UserModule,
+    TypeOrmModule.forFeature([User]), // Import User entity
     JwtModule.register({
       global: true,
       secret: jwtConstants.secret,

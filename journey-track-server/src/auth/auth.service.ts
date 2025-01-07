@@ -18,6 +18,7 @@ export class AuthService {
     // UserService will create the user
 
     const user = await this.userService.create(createUserDto);
+    console.log('user', user);
 
     // Auth service handles token generation
     const token = this.jwtService.sign({ userId: user.id });

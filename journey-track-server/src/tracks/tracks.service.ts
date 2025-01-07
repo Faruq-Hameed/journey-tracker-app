@@ -4,6 +4,7 @@ import { Repository } from 'typeorm';
 import { Track } from './entities/track.entity';
 import { User } from 'src/user/entities/user.entity';
 import { Point } from './entities/point.entity';
+import { CreateTrackDto } from './dto/create-track.dto';
 @Injectable()
 export class TracksService {
   constructor(
@@ -17,7 +18,7 @@ export class TracksService {
     });
   }
 
-  async create(createTrackDto: { name: string; locations: Point[] }, user: User) {
+  async create(createTrackDto: CreateTrackDto, user: User) {
     const track = this.trackRepository.create({
       ...createTrackDto,
       user,

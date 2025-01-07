@@ -21,7 +21,7 @@ import { APP_GUARD } from '@nestjs/core';
     }),
   ],
   controllers: [AuthController],
-  providers: [AuthService, 
+  providers: [AuthService, UserService,
     // set default guard for all routes except ones that are decorated public
     {
       provide: APP_GUARD,

@@ -2,21 +2,17 @@ import React from "react";
 
 import { Text, StyleSheet, View, Button, FlatList, TouchableOpacity } from "react-native";
 import { useMyNavigation } from "../hooks/useMyNavigation";
+import { data } from "../data";
 
 
-const data = [
-  {title: 'Track 1', id: 1},
-  {title: 'Track 2', id: 2},
-  {title: 'Track 3', id: 3},
-  {title: 'Track 4', id: 4},
-]
-const TrackListScreen = ({ navigation }) => {
+
+const TrackListScreen = () => {
   const navigation = useMyNavigation()
   return (
     <View>
       <FlatList data={data} keyExtractor={(item)=> item.id } 
       renderItem={({item})=>{
-        return <TouchableOpacity  onPress={()=>navigation('TrackDetail', {id: item.id})}>
+        return <TouchableOpacity  onPress={()=>navigation({screen: 'Detail',params: {id: item.id}})}>
           <Text>{item.title}</Text>
         </TouchableOpacity>
       }}

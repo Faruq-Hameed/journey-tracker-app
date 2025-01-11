@@ -14,8 +14,8 @@ export const useMyNavigation = () => {
    * @param {boolean} replace - Whether to replace current screen
    * @param {Object} params - Navigation parameters
    */
- const navigateTo = (screen, replace = false,params = {}) => {
-   if (replace) {
+ const navigateTo = ({screen, resetStack = false, params ={}}) => {
+   if (resetStack) {
      //then clears the navigation stack
      return navigation.reset({
        index: 0, // Current active screen position

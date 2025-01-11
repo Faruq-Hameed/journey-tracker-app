@@ -6,7 +6,7 @@ import { useMyNavigation } from "../hooks/useMyNavigation";
 const NavigationButton = ({ title, screen }) => {
   const navigation = useMyNavigation()
   return (
-    <TouchableOpacity onPress={()=>navigation(screen,true)} style={styles.container}>
+    <TouchableOpacity onPress={()=>navigation({screen, resetStack: true})} style={styles.container}>
       <Text style={styles.title}>{title}</Text>
     </TouchableOpacity>
   );

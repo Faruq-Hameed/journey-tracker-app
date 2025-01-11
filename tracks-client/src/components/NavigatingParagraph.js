@@ -5,7 +5,7 @@ import { useMyNavigation } from "../hooks/useMyNavigation";
 const NavigatingParagraph = ({ screen, Texts }) => {
   const navigateTo = useMyNavigation();
   return (
-    <TouchableOpacity onPress={() => navigateTo(screen,)}>
+    <TouchableOpacity onPress={() => navigateTo({screen})}>
       <Text style={styles.text}>{Texts}</Text>
     </TouchableOpacity>
   );

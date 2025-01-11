@@ -10,7 +10,8 @@ import {
 } from "react-native";
 import TextBox from "../components/TextBox";
 import NavigatingParagraph from "../components/NavigatingParagraph";
-import ButtonComponent from "../components/ButtonComponent";
+import NavigationButton from "../components/NavigationButton";
+import { useNavigation } from "@react-navigation/native";
 
 const SignInScreen = () => {
   const [email, setEmail] = useState("");
@@ -25,7 +26,7 @@ const SignInScreen = () => {
         onChangeText={setPassword}
         secureTextEntry
       />
-      <ButtonComponent title="Sign In" onPress={() => {}} />
+      <NavigationButton title="Sign In" screen="Tracks" />
 
       <NavigatingParagraph
         screen="SignUp"

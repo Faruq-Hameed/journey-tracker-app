@@ -1,9 +1,12 @@
 import React from "react";
 import { Text, View, Button, StyleSheet, TouchableOpacity } from "react-native";
+import { useMyNavigation } from "../hooks/useMyNavigation";
 
-const ButtonComponent = ({ title, onPress }) => {
+//NavigationButton component it expect the button title and the screen to navigate to
+const NavigationButton = ({ title, screen }) => {
+  const navigation = useMyNavigation()
   return (
-    <TouchableOpacity onPress={onPress} style={styles.container}>
+    <TouchableOpacity onPress={()=>navigation(screen,true)} style={styles.container}>
       <Text style={styles.title}>{title}</Text>
     </TouchableOpacity>
   );
@@ -22,4 +25,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ButtonComponent;
+export default NavigationButton;

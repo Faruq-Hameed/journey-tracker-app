@@ -1,7 +1,8 @@
 import React from "react";
 import { Text, StyleSheet, View, Button } from "react-native";
 
-const TrackDetailScreen = () =>{
+const TrackDetailScreen = ({route}) =>{
+    const 
     return (
         <View>
         <Text style={styles.header}>Track Detail Screen</Text>

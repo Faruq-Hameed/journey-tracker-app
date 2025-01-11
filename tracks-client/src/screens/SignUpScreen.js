@@ -10,7 +10,7 @@ import {
 import TextBox from "../components/TextBox";
 import { SafeAreaView } from "react-native-safe-area-context";
 import NavigatingParagraph from "../components/NavigatingParagraph";
-import ButtonComponent from "../components/ButtonComponent";
+import NavigationButton from "../components/NavigationButton";
 import { signUpReducer } from "../reducers/signUpReducer";
 
 const initialState = {
@@ -62,12 +62,9 @@ const SignUpScreen = () => {
         }}
         secureTextEntry={true}
       />
-      <ButtonComponent
+      <NavigationButton
         title="Sign Up"
-        onPress={() => {
-          Alert.alert("Sign Up", JSON.stringify(state));
-          // console.log("Sign Up", { data: state });
-        }}
+       screen="Tracks"
       />
       <NavigatingParagraph
         screen="SignIn"

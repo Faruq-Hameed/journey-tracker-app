@@ -1,11 +1,11 @@
 import React from "react";
-import { useNavigation } from "@react-navigation/native";
 import { TouchableOpacity, Text, StyleSheet } from "react-native";
+import { useMyNavigation } from "../hooks/useMyNavigation";
 
 const NavigatingParagraph = ({ screen, Texts }) => {
-  const navigation = useNavigation();
+  const navigateTo = useMyNavigation();
   return (
-    <TouchableOpacity onPress={() => navigation.navigate(screen)}>
+    <TouchableOpacity onPress={() => navigateTo(screen,)}>
       <Text style={styles.text}>{Texts}</Text>
     </TouchableOpacity>
   );

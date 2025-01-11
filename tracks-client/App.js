@@ -15,9 +15,7 @@ const Tab = createBottomTabNavigator();
 function MyTabs() {
   return (
     <Tab.Navigator>
-      <Tab.Screen  name="List" component={TrackListScreen} options={{title: "Tracks"}} />
-      <Tab.Screen name="Detail" component={TrackDetailScreen} options={{title: ""}}  />
-      <Tab.Screen name="Profile" component={ProfileScreen} />
+      <Tab.Screen name="Home" component={HomeScreen} />
       <Tab.Screen name="Profile" component={ProfileScreen} />
     </Tab.Navigator>
   );
@@ -37,8 +35,8 @@ export default function  App() {
           component={SignInScreen}
           options={{ headerShown: false }}
         />
-        <Stack.Screen/>
-        <Stack.Screen />
+        <Stack.Screen name="Tracks" component={TrackListScreen} options={{title: "Tracks"}}/>
+        <Stack.Screen name="Detail" component={TrackDetailScreen} options={{title: ""}} />
         <Stack.Screen name="Create" component={TrackCreateScreen} options={{title: "Create Track"}}/>
         <Stack.Screen name="Account" component={AccountScreen} options={{title: "Tracks"}}/>
       </Stack.Navigator>

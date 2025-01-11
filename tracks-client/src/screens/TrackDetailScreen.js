@@ -7,6 +7,8 @@ const TrackDetailScreen = ({route}) =>{
     if (!item) {
         return <Text>Track not founded</Text>
     }
+
+    
     return (
         <View>
         <Text style={styles.header}>{ item.title  } ____  #{ item.id  }</Text>

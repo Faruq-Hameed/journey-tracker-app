@@ -1,4 +1,4 @@
-import react, { useReducer } from "react";
+import react, { useReducer, useContext, useEffect } from "react";
 import {
   Text,
   View,
@@ -6,12 +6,14 @@ import {
   StyleSheet,
   TouchableOpacity,
   Alert,
+  Button,
 } from "react-native";
 import TextBox from "../components/TextBox";
 import { SafeAreaView } from "react-native-safe-area-context";
 import NavigatingParagraph from "../components/NavigatingParagraph";
 import NavigationButton from "../components/NavigationButton";
 import { signUpReducer } from "../reducers/signUpReducer";
+import { Context } from "../contexts/tokenContext";
 
 const initialState = {
   firstname: "",
@@ -22,6 +24,9 @@ const initialState = {
 };
 const SignUpScreen = () => {
   const [state, dispatch] = useReducer(signUpReducer, initialState);
+  const {state : tokenState, setToken} = useContext(Context)
+
+  console.log({tokenState});
   const { firstname, lastname, phonenumber, email, password } = state;
   return (
     <SafeAreaView style={styles.container}>
@@ -62,10 +67,11 @@ const SignUpScreen = () => {
         }}
         secureTextEntry={true}
       />
-      <NavigationButton
+      <Button title="Logup" onPress={()=> setToken("hello")}/>
+      {/* <NavigationButton
         title="Sign Up"
        screen="Tracks"
-      />
+      /> */}
       <NavigatingParagraph
         screen="SignIn"
         Texts="Already have an account? Sign In instead."

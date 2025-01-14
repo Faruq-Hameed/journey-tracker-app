@@ -1,45 +1,102 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import SignUpScreen from "./src/screens/SignUpScreen";
 import SignInScreen from "./src/screens/SignInScreen";
 import TrackListScreen from "./src/screens/TrackListScreen";
 import TrackDetailScreen from "./src/screens/TrackDetailScreen";
 import TrackCreateScreen from "./src/screens/TrackCreateScreen";
 import AccountScreen from "./src/screens/AccountScreen";
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-const Stack = createNativeStackNavigator()
+const LoginStack = createNativeStackNavigator()
+const TrackStack = createNativeStackNavigator()
+const MainTab = createBottomTabNavigator()
 
 const Tab = createBottomTabNavigator();
 
-function MyTabs() {
+const TrackStackNavigator = () =>{
   return (
-    <Tab.Navigator>
-      <Tab.Screen name="Home" component={HomeScreen} />
-      <Tab.Screen name="Profile" component={ProfileScreen} />
-    </Tab.Navigator>
-  );
+    <TrackStack.Navigator>
+      <TrackStack.Screen name="Tracks" component={TrackListScreen} />
+      <TrackStack.Screen name="Detail" component={TrackDetailScreen} />
+    </TrackStack.Navigator>
+  )
 }
 
-export default function  App() {
+const MainTabNavigator = () =>{
+  return (
+    <MainTab.Navigator>
+      <MainTab.Screen name="Tracks" component={TrackStackNavigator} options={{title: "Tracks"}}/>
+      <MainTab.Screen name="Create" component={TrackCreateScreen} options={{ title: "Create Track" }}/>
+      <MainTab.Screen name="Account" component={AccountScreen} options={{ title: "Create Track" }}/>
+    </MainTab.Navigator>
+  )
+}
+
+const AuthStackNavigator = () => {
+  return (
+    <LoginStack.Navigator >
+      <LoginStack.Screen name="SignUp" component={SignUpScreen} options={{headerShown: false}} />
+      <LoginStack.Screen name="SignIn" component={SignInScreen} options={{headerShown: false}} />
+    </LoginStack.Navigator>
+  )
+}
+
+
+export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="SignUp">
-        <Stack.Screen
-          name="SignUp"
-          component={SignUpScreen}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="SignIn"
-          component={SignInScreen}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen name="Tracks" component={TrackListScreen} options={{title: "Tracks"}}/>
-        <Stack.Screen name="Detail" component={TrackDetailScreen} options={{title: ""}} />
-        <Stack.Screen name="Create" component={TrackCreateScreen} options={{title: "Create Track"}}/>
-        <Stack.Screen name="Account" component={AccountScreen} options={{title: "Tracks"}}/>
-      </Stack.Navigator>
+      <LoginStack.Navigator initialRouteName="SignUp">
+        <LoginStack.Screen name="SignUp" component={SignUpScreen} options={{headerShown: false}} />
+        <LoginStack.Screen name="SignIn" component={SignInScreen} options={{headerShown: false}} />
+        <LoginStack.Screen name="Tabs" component={MainTabNavigator} options={{headerShown: false}} />
+      </LoginStack.Navigator>
     </NavigationContainer>
-  );
+  )
 }
+
+// function MyTabs() {
+//   return (
+//     <Tab.Navigator>
+//       <Tab.Screen
+//         name="Tracks"
+//         component={TrackListScreen}
+//         options={{ title: "Tracks" }}
+//       />
+//       <Tab.Screen
+//         name="Create"
+//         component={TrackCreateScreen}
+//         options={{ title: "Create Track" }}
+//       />
+//       <Tab.Screen
+//         name="Account"
+//         component={AccountScreen}
+//         options={{ title: "Create Track" }}
+//       />
+//     </Tab.Navigator>
+//   );
+// }
+
+// export default function  App() {
+//   return (
+//     <NavigationContainer>
+//       <Stack.Navigator initialRouteName="SignUp">
+//         <Stack.Screen
+//           name="SignUp"
+//           component={SignUpScreen}
+//           options={{ headerShown: false }}
+//         />
+//         <Stack.Screen
+//           name="SignIn"
+//           component={SignInScreen}
+//           options={{ headerShown: false }}
+//         />
+//         <Stack.Screen name="Tracks" component={TrackListScreen} options={{title: "Tracks"}}/>
+//         <Stack.Screen name="Detail" component={TrackDetailScreen} options={{title: ""}} />
+//         <Stack.Screen name="Tabs" component={MyTabs} options={{title: ""}} />
+//         {/* <Stack.Screen name="Create" component={TrackCreateScreen} options={{title: "Create Track"}}/>
+//         <Stack.Screen name="Account" component={AccountScreen} options={{title: "Create Track"}}/> */}
+//       </Stack.Navigator>
+//     </NavigationContainer>
+//   );
+// }

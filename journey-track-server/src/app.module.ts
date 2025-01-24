@@ -8,6 +8,7 @@ import { UserModule } from './user/user.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import databaseConfig from './config/database.config';
 import { validate } from './config/env.validation';
+import { NgrokService } from './ngrok.service';
 
 @Module({
   imports: [ 
@@ -24,6 +25,6 @@ import { validate } from './config/env.validation';
     }),
     AuthModule, TracksModule, UserModule],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, NgrokService],
 })
 export class AppModule {}

@@ -14,6 +14,7 @@ import NavigatingParagraph from "../components/NavigatingParagraph";
 import NavigationButton from "../components/NavigationButton";
 import { signUpReducer } from "../reducers/signUpReducer";
 import { Context } from "../contexts/tokenContext";
+import { useMyNavigation } from "../hooks/useMyNavigation";
 
 const initialState = {
   firstname: "",
@@ -25,8 +26,8 @@ const initialState = {
 const SignUpScreen = () => {
   const [state, dispatch] = useReducer(signUpReducer, initialState);
   const {state : tokenState, setToken} = useContext(Context)
+  const navigation = useMyNavigation();
 
-  console.log({tokenState});
   const { firstname, lastname, phonenumber, email, password } = state;
   return (
     <SafeAreaView style={styles.container}>
@@ -68,6 +69,7 @@ const SignUpScreen = () => {
         secureTextEntry={true}
       />
       <Button title="Logup" onPress={()=> setToken("hello")}/>
+      {/* <NavigationButton title="to main flow" screen="Tracks"/> */}
       {/* <NavigationButton
         title="Sign Up"
        screen="Tracks"

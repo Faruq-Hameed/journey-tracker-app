@@ -5,6 +5,7 @@ import { GetUser } from '../auth/decorators/get-user.decorator';
 import { User } from 'src/user/entities/user.entity';
 import { Point } from './entities/point.entity';
 import { CreateTrackDto } from './dto/create-track.dto';
+
 @Controller('tracks')
 @UseGuards(JwtAuthGuard)
 export class TracksController {

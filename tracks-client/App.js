@@ -14,12 +14,11 @@ const LoginStack = createNativeStackNavigator();
 const TrackStack = createNativeStackNavigator();
 const MainTab = createBottomTabNavigator();
 
-const Tab = createBottomTabNavigator();
 
 const TrackStackNavigator = () => {
   return (
     <TrackStack.Navigator>
-      <TrackStack.Screen name="TrackList" component={TrackListScreen} />
+      <TrackStack.Screen name="Tracks" component={TrackListScreen} options={{title: "Tracks"}} />
       <TrackStack.Screen name="Detail" component={TrackDetailScreen} />
     </TrackStack.Navigator>
   );
@@ -29,9 +28,9 @@ const MainTabNavigator = () => {
   return (
     <MainTab.Navigator>
       <MainTab.Screen
-        name="Tracks"
+        name="TrackNavs"
         component={TrackStackNavigator}
-        options={{ title: "Tracks" }}
+        options={{ title: "TrackNavs", headerShown: false }}  /* Hide parent header to avoid title overlap */
       />
       <MainTab.Screen
         name="Create"
@@ -41,7 +40,7 @@ const MainTabNavigator = () => {
       <MainTab.Screen
         name="Account"
         component={AccountScreen}
-        options={{ title: "Create Track" }}
+        options={{ title: "Account" }}
       />
     </MainTab.Navigator>
   );
@@ -81,7 +80,6 @@ const Navigation = () => {
 };
 
 export default function App() {
-  const isAuthenticated = false; // change to true to see the main app
   return (
     <Provider>
       <Navigation />

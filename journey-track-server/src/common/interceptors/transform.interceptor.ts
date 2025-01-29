@@ -35,7 +35,7 @@ export class ResponseTransformInterceptor<T> implements NestInterceptor<T, Respo
       })),
       // Handle errors
       catchError(error => {
-        // If it's a known HTTP exception, let it pass through to be handled by exception filter
+        // If it's a known HTTP exception, thenlet it pass through to be handled by exception filter
         if (error instanceof HttpException) {
           return throwError(() => error);
         }

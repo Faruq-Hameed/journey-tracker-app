@@ -28,7 +28,7 @@ export class ResponseTransformInterceptor<T> implements NestInterceptor<T, Respo
     return next.handle().pipe(
       // Transform successful responses
       map(data => ({
-        statusCode: response.statusCode, // Add HTTP status code  
+        statusCode: response.statusCode, // Add the HTTP status code  
         success: true,    
         message: customMessage || this.getSuccessMessage(request.method, request.route.path), // Use custom message or generate default
         data,                // Original response data

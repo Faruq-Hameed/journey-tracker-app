@@ -8,7 +8,7 @@ export class NgrokService implements OnApplicationBootstrap {
 
   async onApplicationBootstrap() {
     try {
-      const url = await connect(3000); // Use `connect` directly
+      const url = await connect(3003); // Use `connect` directly
       this.logger.log(`Ngrok is running: ${url}`);
     } catch (error) {
       this.logger.error('Failed to start ngrok', error.message);
